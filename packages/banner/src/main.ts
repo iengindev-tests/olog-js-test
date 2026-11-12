@@ -33,4 +33,6 @@ export default Content('banner', {
   project: Package['name'],
   version: Package['version'],
   description: Package['description'],
+  env: process.env['NODE_ENV'] ?? 'development',
+  nodeVersion: process.version,
 })

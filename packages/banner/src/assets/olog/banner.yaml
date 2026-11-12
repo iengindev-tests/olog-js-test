@@ -12,11 +12,12 @@ banner: |
   ⢸⠀⢃⡆⠀⢿⡄⠑⢽⣄⠀⠀⠀⢀⠂⠠⢁⠈⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠄⡐⢀⠂⠀⠀⣠⣮⡟⢹⣯⣸⣱⠁⠀⡇
   ⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠉⠉⠉⠉⠉⠁
 
-  > Welcome to OLOG Logger
-  * This projects: {{project}} ({{version}})
-  * Desciption: {{desciption}}
+  OLOG Logger
 
-  > You need help?
-  * [GitHub](https://github.com/iengindev/olog-js)
-  * [Documentation](https://github.com/iengindev/olog-js/blob/main/README)
-  * [Issues](https://github.com/iengindev/olog-js/issues)
+  • Project    : {{project}} {{version}}
+  • Description: {{description}}
+  • Environment: {{env}} (Node {{nodeVersion}})
+
+  • GitHub     : https://github.com/iengindev/olog-js
+  • Docs       : https://github.com/iengindev/olog-js/blob/main/README
+  • Issues     : https://github.com/iengindev/olog-js/issues
