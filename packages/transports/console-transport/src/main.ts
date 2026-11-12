@@ -1,3 +1,5 @@
+import ologBanner from '@olog-js/banner'
+
 import { LogLevel, type ILogTransport, type LogEntry } from '@olog-js/core/types'
 
 import { Colors } from './utils/colors.js'
@@ -12,6 +14,10 @@ const LevelColors: Record<LogLevel, string> = {
 
 export class ConsoleTransport implements ILogTransport {
   private output: Console['log'] = console.log
+
+  constructor() {
+    this.output(ologBanner)
+  }
 
   log(entry: LogEntry): void | Promise<void> {
     const levelColor = LevelColors[entry.level] || Colors.reset
