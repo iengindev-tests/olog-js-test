@@ -12,7 +12,8 @@
     }
   },
   "scripts": {
-    "build": "tsc"
+    "cp:package": "node -e \"const fs = require('fs'); fs.copyFileSync('package.json', 'dist/package.json');\"",
+    "build": "tsc && npm run cp:package"
   },
   "keywords": [],
   "author": "",

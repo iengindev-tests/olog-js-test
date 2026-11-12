@@ -12,7 +12,9 @@
     }
   },
   "scripts": {
-    "build": "tsc && node --input-type=module -e \"import fs from 'node:fs/promises'; await fs.cp('src', 'dist', { recursive: true, filter: (s) => !s.endsWith('.ts') });\""
+    "cp:package": "node -e \"const fs = require('fs'); fs.copyFileSync('package.json', 'dist/package.json');\"",
+    "cp:banner": "node --input-type=module -e \"import fs from 'node:fs/promises'; await fs.cp('src', 'dist', { recursive: true, filter: (s) => !s.endsWith('.ts') });\"",
+    "build": "tsc && npm run cp:package && npm run cp:banner"
   },
   "keywords": [],
   "author": "",
