@@ -1,0 +1,30 @@
+{
+  "name": "@olog-js/banner",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/main.js"
+    }
+  },
+  "scripts": {
+    "cp:package": "node -e \"const fs = require('fs'); fs.copyFileSync('package.json', 'dist/package.json');\"",
+    "cp:banner": "node --input-type=module -e \"import fs from 'node:fs/promises'; await fs.cp('src', 'dist', { recursive: true, filter: (s) => !s.endsWith('.ts') });\"",
+    "build": "tsc && npm run cp:package && npm run cp:banner"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.30.1",
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "yaml": "^2.9.1"
+  }
+}
