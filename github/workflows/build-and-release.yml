@@ -1,0 +1,94 @@
+name: Release Dists to Separate Branches
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        uses: pnpm/install --frozen-lockfile
+
+      - name: Build all packages
+        run: pnpm build
+
+      - name: Patch package.json in dist folders
+        run: |
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+
+            const repo = process.env.GITHUB_REPOSITORY;
+
+            const packages = [
+              { name: 'core', dir: 'packages/core' },
+              { name: 'banner', dir: 'packages/banner' },
+              { name: 'console-transport', dir: 'packages/transports/console-transport' }
+            ];
+
+            packages.forEach(pkg => {
+              const distPkgPath = path.join(pkg.dir, 'dist', 'package.json');
+
+              if (fs.existsSync(distPkgPath)) {
+                const pkgJson = JSON.parse(fs.readFileSync(distPkgPath, 'utf-8'));
+
+                if (pkgJson.dependencies) {
+                  Object.keys(pkgJson.dependencies).forEach(dep => {
+                    if (pkgJson.dependencies[dep].startsWith('workspace:')) {
+                      const targetBranch = dep.replace('@olog-js/', 're/');
+                      pkgJson.dependencies[dep] = \`github:\${repo}#\${targetBranch}\`;
+                    }
+                  });
+                }
+
+                fs.writeFileSync(distPkgPath, JSON.stringify(pkgJson, null, 2));
+                console.log(\`✅ Patched \${pkg.name}/dist/package.json\`);
+              } else {
+                console.log(\`⚠️ package.json not found at \${distPkgPath}\`);
+              }
+            });
+          "
+
+      - name: Deploy Core Dist
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/core/dist
+          publish_branch: re/core
+          force_orphan: true
+
+      - name: Deploy Banner Dist
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/banner/dist
+          publish_branch: re/banner
+          force_orphan: true
+
+      - name: Deploy Console Transport Dist
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/transports/console-transport/dist
+          publish_branch: re/console-transport
+          force_orphan: true
