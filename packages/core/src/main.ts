@@ -1,12 +1,4 @@
-import { LogLevel, type LogEntry, type ILogTransport } from './types/log.js'
-
-export const LogLevelName: Record<LogLevel, string> = {
-  [LogLevel.DEBUG]: 'DEBUG',
-  [LogLevel.INFO]: 'INFO',
-  [LogLevel.WARN]: 'WARN',
-  [LogLevel.ERROR]: 'ERROR',
-  [LogLevel.FATAL]: 'FATAL',
-}
+import { LogLevel, LogLevelName, type LogEntry, type ILogTransport } from './types/log.js'
 
 export class OLog {
   private transports: ILogTransport[] = []

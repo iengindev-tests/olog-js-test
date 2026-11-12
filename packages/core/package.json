@@ -9,6 +9,10 @@
     ".": {
       "types": "./dist/main.d.ts",
       "import": "./dist/main.js"
+    },
+    "./types": {
+      "types": "./dist/types/log.d.ts",
+      "import": "./dist/types/log.js"
     }
   },
   "scripts": {

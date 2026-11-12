@@ -6,6 +6,14 @@ export enum LogLevel {
   FATAL   = 4,
 }
 
+export const LogLevelName: Record<LogLevel, string> = {
+  [LogLevel.DEBUG]: 'DEBUG',
+  [LogLevel.INFO]: 'INFO',
+  [LogLevel.WARN]: 'WARN',
+  [LogLevel.ERROR]: 'ERROR',
+  [LogLevel.FATAL]: 'FATAL',
+}
+
 type Timestamp  = string
 type LevelName  = string
 type Context    = string
