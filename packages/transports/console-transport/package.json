@@ -1,0 +1,32 @@
+{
+  "name": "@olog-js/console-transport",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/main.js"
+    },
+    "./types": {
+      "types": "./dist/types/log.d.ts",
+      "import": "./dist/types/log.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.30.1",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@olog-js/core": "workspace:*",
+    "@types/node": "^26.6.6"
+  }
+}
