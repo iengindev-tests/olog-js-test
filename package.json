@@ -1,0 +1,30 @@
+{
+  "name": "@olog-js/console-transport",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/main.js"
+    }
+  },
+  "scripts": {
+    "cp:package": "node -e \"const fs = require('fs'); fs.copyFileSync('package.json', 'dist/package.json');\"",
+    "build": "tsc && npm run cp:package"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.30.1",
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@olog-js/banner": "github:iengindev/olog-js#re/banner",
+    "@olog-js/core": "github:iengindev/olog-js#re/core"
+  }
+}
