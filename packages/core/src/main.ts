@@ -1,4 +1,4 @@
-import { LogLevel, LogEntry, ILogTransport } from './types/log'
+import { LogLevel, type LogEntry, type ILogTransport } from './types/log.js'
 
 export const LogLevelName: Record<LogLevel, string> = {
   [LogLevel.DEBUG]: 'DEBUG',

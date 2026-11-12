@@ -10,7 +10,7 @@ type Timestamp  = string
 type LevelName  = string
 type Context    = string
 type Message    = string
-type Meta       = Record<string, any>
+type Meta       = Record<string, any> | undefined
 
 export interface LogEntry {
   timestamp:  Timestamp
